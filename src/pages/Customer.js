@@ -78,7 +78,7 @@ function Customer() {
     (async () => {
       fetchTickets();
     })();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchTickets = () => {
@@ -88,7 +88,7 @@ function Customer() {
         updateTicketCount(response.data);
       })
       .catch(function (error) {
-       setMessage(error.response.data.message);
+        setMessage(error.response.data.message);
       });
   };
 
@@ -144,17 +144,19 @@ function Customer() {
     updateSelectedCurrTicket(Object.assign({}, selectedCurrTicket));
   };
 
-  // 4. fetch the put api 
+  // 4. fetch the put api
   const updateTicket = (e) => {
-    e.preventDefault(); 
-    ticketUpdation(selectedCurrTicket.id, selectedCurrTicket).then(function(response){
-      console.log(" Ticket Updated successfully!");
-      setTicketUpdationModal(false); 
-      fetchTickets()
-    }).catch(function(error){
-      console.log(error);
-    })
-  }
+    e.preventDefault();
+    ticketUpdation(selectedCurrTicket.id, selectedCurrTicket)
+      .then(function (response) {
+        console.log(" Ticket Updated successfully!");
+        setTicketUpdationModal(false);
+        fetchTickets();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   // ticket count for widgets
   const updateTicketCount = (tickets) => {
@@ -403,7 +405,7 @@ function Customer() {
               </form>
             </Modal.Body>
           </Modal>
-        ) : null}       
+        ) : null}
       </div>
     </div>
   );
